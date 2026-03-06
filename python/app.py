@@ -63,10 +63,16 @@ class Simulation:
         self.write_data(results)
     
     def write_data(self, data, file_path = "DavidResults.md"):
-        with open(file_path, mode='w', newline='') as file:
+        with open(file_path, mode='w') as file: 
             writer = csv.writer(file)
-            header = str(f'***\nSimulation of {self.dices} dice for {self.rolls} rolls\n***\n\n')
-            writer.writerow([header])
+            #writer = csv.QUOTE_NONE(file)
+            #header = str(f'***\nSimulation of {self.dices} dice for {self.rolls} rolls\n***\n\n')
+            #print(header)
+            writer.writerow(['***'])
+            writer.writerow([f'Simulation of {self.dices} dice for {self.rolls} rolls'])
+            writer.writerow(['***'])
+            writer.writerow([])
+            writer.writerow([])
             writer.writerow(['Dice Total', '\t\tCount', '\tPDF', '\tcurve'])
             for roll in data:
                 if len(str(data[roll])) > 2:
